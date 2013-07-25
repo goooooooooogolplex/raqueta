@@ -1,0 +1,24 @@
+!!! 5
+
+
+%html{:lang => "ja"}
+  %head
+    %meta{ :content=>"text/html", :charset=>"utf-8" }
+    %title Raqueta
+    %link{ :rel=>"stylesheet", :href=>"/style.css" }
+    %script{ :type=>"text/javascript", :src=>"http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" }
+  %body
+    #main
+    %h3 
+    %h3 コート
+    %select
+      - 1.upto(5) do |i|
+        %option #{i}
+    %h3 出席者＆徴収額
+    This is a test.
+    %h3 aaaa
+    This is a test.
+    %a{ :href=>"#", :id=>"button", :title=>"hoge"}
+    %ul
+      - @members.each do |m|
+        %li #{m}

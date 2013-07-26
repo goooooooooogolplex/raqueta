@@ -23,3 +23,7 @@ get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
   sass :style
 end
+
+get '/application.js' do
+  coffee :application
+end

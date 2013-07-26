@@ -4,19 +4,22 @@
 %html{:lang => "ja"}
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
-    %title Raqueta
+    %title "Raqueta Roll Sheet"
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
-    %script{ :type=>"text/javascript", :src=>"http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" }
+
   %body
     #main
-    %h3 
-    %h3 コート
+    %h1 
+    %h1 コート
     %select
-      - 1.upto(5) do |i|
-        %option #{i}
-    %h3 出席者＆徴収額
+      - 0.upto(@num_members-1) do |i|
+        %option #{@members[i]}
+    %h1 出席者＆徴収額
+    %span button
+    - @members.each do |m|
+      %span #{m}
     This is a test.
-    %h3 aaaa
+    %h1 aaaa
     This is a test.
     %a{ :href=>"#", :id=>"button", :title=>"hoge"}
     %ul

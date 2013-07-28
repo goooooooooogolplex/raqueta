@@ -19,9 +19,9 @@ get '/' do
   haml :index
 end
 
-get '/style.css' do
+get %r{^/(.*)\.css$} do
   content_type 'text/css', :charset => 'utf-8'
-  sass :style
+  sass :"#{ params[:captures].first }"
 end
 
 get '/application.js' do

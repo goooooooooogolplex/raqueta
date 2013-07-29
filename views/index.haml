@@ -5,7 +5,7 @@
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
     %meta{ :name=>"viewport", :content=>"width=device=width; initial-scale=1; maximum-scale=1; user-scalable=no;" }
-    %title "Raqueta支払い管理ページ"
+    %title "Raqueta"
     %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap.min.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
     %script{ :src=>"/application.js" }
@@ -15,11 +15,20 @@
     #main
     %div{ :class=>"container" }
       %div{ :class=>"hero-unit" }
-        %h1 Raqueta支払い管理ページ
+        %h1 Raqueta
         %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 今日の日付
         %input{:type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
+    %div{ :class=>"container" }
+      %div{ :class=>"page-header" }
+        %h2 開催場所
+        %select
+          - @court.each do |c|
+            %option #{c}
+        %select
+          - 1.upto(5) do |i|
+            %option #{i}面
     %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 コート予約者
@@ -29,7 +38,7 @@
             %option #{@members[i]}
     %div{ :class=>"container" }
       %div{ :class=>"page-header" }
-        %h2 受け取り
+        %h2 現金受け取り
         %select
           - 0.upto(@num_members-1) do |i|
             %option #{@members[i]}
@@ -44,38 +53,28 @@
             %th 出欠
             %th 駐車場割引
             %th 支払い
+            %th 金額入力
         %tbody
-          %tr
-            %td 0
-            %td 1
-            %td 2
-            %td 3
-            %td 4
-          %tr
-            %td 3
-            %td 4
-            %td 5
-            %td 6
-            %td 7
-      %button{ :class=>"btn btn-success" } メール送信
-    %span button
-    - @members.each do |m|
-      %span #{m}
-    %ul
-      - @members.each do |m|
-        %li #{m}
-        %a{ :href=>"#", :class=>"btn" } #{m}
-    %form
-      - 0.upto(1) do |i|
-        %input{:type=>"radio", :name=>"sex", :value=>"#{i}"} #{i} 
-    %a{ :href=>"javascript:void(0)", :class=>"button", :onClick=>"sendmail()" } send
+          - 0.upto(@num_members-1) do |i|
+            %tr
+              %td #{i}
+              %td #{@members[i]}
+              %td
+                %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
+                  %button{ :class=>"btn btn-info" } 出
+                  %button{ :class=>"btn btn-info active" } 欠
+              %td
+                %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
+                  %button{ :class=>"btn btn-warning" } 有
+                  %button{ :class=>"btn btn-warning active" } 無
+              %td
+                %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
+                  %button{ :class=>"btn btn-success active" } 0
+                  %button{ :class=>"btn btn-success" } 500
+                  %button{ :class=>"btn btn-success" } 1000
+                  %button{ :class=>"btn btn-success" } 入力
+              %td
+                %input{ :type=>"number", :class=>"span2", :value=>"0"}
 
-    %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-      %button{ :class=>"btn" } Left
-      %button{ :class=>"btn" } Middle
-      %button{ :class=>"btn" } Right
+      %button{ :class=>"btn btn-primary", :onClick=>"sendmail()" } メール送信
 
-    %div{ :class=>"btn-group", "data-toggle"=>"buttons-checkbox" }
-      %button{ :class=>"btn" } Left
-      %button{ :class=>"btn" } Middle
-      %button{ :class=>"btn" } Right

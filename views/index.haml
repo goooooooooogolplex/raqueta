@@ -5,20 +5,59 @@
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
     %meta{ :name=>"viewport", :content=>"width=device=width; initial-scale=1; maximum-scale=1; user-scalable=no;" }
-    %title "Raqueta Roll Sheet"
-    %link{ :rel=>"stylesheet", :href=>"css/bootstrap.min.css", :media=>"screen" }
+    %title "Raqueta支払い管理ページ"
+    %link{ :rel=>"stylesheet", :href=>"bootstrap3/css/bootstrap.min.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
     %script{ :src=>"/application.js" }
+    %script{ :src=>"http://code.jquery.com/jquery.js" }
+    %script{ :src=>"bootstrap3/js/bootstrap.min.js" }
   %body
     #main
-    %basefont{ :size=>"1", :face=>"ヒラギノ角ゴProW3" }
-    %h1 日付
-    %input{:type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
-    %h1 コート予約
-    %select
-      - 0.upto(@num_members-1) do |i|
-        %option #{@members[i]}
-    %h1 出席者＆徴収額
+    %div{ :class=>"container" }
+      %div{ :class=>"hero-unit" }
+        %h1 Raqueta支払い管理ページ
+        %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
+      %div{ :class=>"page-header" }
+        %h2 今日の日付
+        %input{:type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
+    %div{ :class=>"container" }
+      %div{ :class=>"page-header" }
+        %h2 コート予約者
+        %select
+          %option 不明
+          - 0.upto(@num_members-1) do |i|
+            %option #{@members[i]}
+    %div{ :class=>"container" }
+      %div{ :class=>"page-header" }
+        %h2 受け取り
+        %select
+          - 0.upto(@num_members-1) do |i|
+            %option #{@members[i]}
+    %div{ :class=>"container" }
+      %div{ :class=>"page-header" }
+        %h2 出席者＆支払い金額管理
+      %table{ :class=>"table table-striped" }
+        %thead
+          %tr
+            %th #
+            %th 名前
+            %th 出欠
+            %th 駐車場割引
+            %th 支払い
+        %tbody
+          %tr
+            %td 0
+            %td 1
+            %td 2
+            %td 3
+            %td 4
+          %tr
+            %td 3
+            %td 4
+            %td 5
+            %td 6
+            %td 7
+      %button{ :class=>"btn btn-success" } メール送信
     %span button
     - @members.each do |m|
       %span #{m}
@@ -30,6 +69,13 @@
       - 0.upto(1) do |i|
         %input{:type=>"radio", :name=>"sex", :value=>"#{i}"} #{i} 
     %a{ :href=>"javascript:void(0)", :class=>"button", :onClick=>"sendmail()" } send
-    %h1 Hello, world!
-    %script{ :src=>"http://code.jquery.com/jquery.js"}
-    %script{ :src=>"js/bootstrap.min.js" }
+
+    %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
+      %button{ :class=>"btn" } Left
+      %button{ :class=>"btn" } Middle
+      %button{ :class=>"btn" } Right
+
+    %div{ :class=>"btn-group", "data-toggle"=>"buttons-checkbox" }
+      %button{ :class=>"btn" } Left
+      %button{ :class=>"btn" } Middle
+      %button{ :class=>"btn" } Right

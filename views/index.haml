@@ -1,6 +1,5 @@
 !!! 5
 
-
 %html{:lang => "ja"}
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
@@ -13,14 +12,14 @@
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
   %body
     #main
-    %div{ :class=>"container" }
+    %div{ :class=>"container-fluid" }
       %div{ :class=>"hero-unit" }
         %h1 Raqueta
         %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 今日の日付
         %input{:type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
-    %div{ :class=>"container" }
+    %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 開催場所
         %select
@@ -29,20 +28,20 @@
         %select
           - 1.upto(5) do |i|
             %option #{i}面
-    %div{ :class=>"container" }
+    %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 コート予約者
         %select
           %option 不明
           - 0.upto(@num_members-1) do |i|
             %option #{@members[i]}
-    %div{ :class=>"container" }
+    %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り
         %select
           - 0.upto(@num_members-1) do |i|
             %option #{@members[i]}
-    %div{ :class=>"container" }
+    %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 出席者＆支払い金額管理
       %table{ :class=>"table table-striped" }
@@ -74,7 +73,27 @@
                   %button{ :class=>"btn btn-success" } 1000
                   %button{ :class=>"btn btn-success" } 入力
               %td
-                %input{ :type=>"number", :class=>"span2", :value=>"0"}
+                %input{ :type=>"number", :value=>"0", :style=>"width:50px;"}
+      %form
+        %button{ :class=>"btn btn-primary", :onClick=>"sendmail()" }
+          %i{ :class=>"icon-envelope icon-white" }
+          メール送信
 
-      %button{ :class=>"btn btn-primary", :onClick=>"sendmail()" } メール送信
-
+    %div{ :id=>"footer" }
+      %div{ :class=>"container-fluid" }
+        %p{ :align=>"right" }
+          Powerd by
+          %a{ :href=>"http://www.ruby-lang.org/ja/" } Ruby
+          ,
+          %a{ :href=>"http://www.sinatrarb.com/" } Sinatra
+          ,
+          %a{ :href=>"http://haml.info/" } Haml
+          ,
+          %a{ :href=>"http://sass-lang.com/" } Sass
+          ,
+          %a{ :href=>"http://coffeescript.org/" } CoffeeScript
+          ,
+          %a{ :href=>"http://getbootstrap.com/" } Bootstrap
+          , etc...
+        %p{ :align=>"right" }
+          Created by Shin Ohno

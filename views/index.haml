@@ -10,6 +10,8 @@
     %script{ :src=>"/application.js" }
     %script{ :src=>"http://code.jquery.com/jquery.js" }
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
+    %script
+      $(document).ready(initialize())
   %body
     #main
     %div{ :class=>"container-fluid" }
@@ -18,14 +20,14 @@
         %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 今日の日付
-        %input{:type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
+        %input{ :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 開催場所
-        %select
+        %select{ :name=>"court" }
           - @court.each do |c|
             %option #{c}
-        %select
+        %select{ :name=>"numcourt" }
           - 1.upto(5) do |i|
             %option #{i}面
     %div{ :class=>"container-fluid" }
@@ -33,17 +35,17 @@
         %h2 コート予約者
         %select
           %option 不明
-          - 0.upto(@num_members-1) do |i|
+          - 0.upto(@members.size-1) do |i|
             %option #{@members[i]}
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り
         %select
-          - 0.upto(@num_members-1) do |i|
+          - 0.upto(@members.size-1) do |i|
             %option #{@members[i]}
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
-        %h2 出席者＆支払い金額管理
+        %h2 出欠＆支払い管理
       %table{ :class=>"table table-striped" }
         %thead
           %tr
@@ -54,28 +56,28 @@
             %th 支払い
             %th 金額入力
         %tbody
-          - 0.upto(@num_members-1) do |i|
+          - 0.upto(@members.size-1) do |i|
             %tr
               %td #{i}
               %td #{@members[i]}
               %td
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-info" } 出
-                  %button{ :class=>"btn btn-info active" } 欠
+                  %button{ :class=>"btn btn-info", :name=>"data0_#{i}" } 出
+                  %button{ :class=>"btn btn-info active", :name=>"data0_#{i}" } 欠
               %td
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-warning" } 有
-                  %button{ :class=>"btn btn-warning active" } 無
+                  %button{ :class=>"btn btn-warning", :name=>"data1_#{i}" } 有
+                  %button{ :class=>"btn btn-warning active", :name=>"data1_#{i}" } 無
               %td
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-success active" } 0
-                  %button{ :class=>"btn btn-success" } 500
-                  %button{ :class=>"btn btn-success" } 1000
-                  %button{ :class=>"btn btn-success" } 入力
+                  %button{ :class=>"btn btn-success active", :name=>"data2_#{i}" } 0
+                  %button{ :class=>"btn btn-success", :name=>"data2_#{i}" } 500
+                  %button{ :class=>"btn btn-success", :name=>"data2_#{i}" } 1000
+                  %button{ :class=>"btn btn-success", :name=>"data2_#{i}" } 入力
               %td
-                %input{ :type=>"number", :value=>"0", :style=>"width:50px;"}
-      %form
-        %button{ :class=>"btn btn-primary", :onClick=>"sendmail()" }
+                %input{ :type=>"number", :value=>"0", :style=>"width:50px;", :name=>"data3_#{i}" }
+      %div{ :style=>"padding-bottom:20px" }
+        %button{ :class=>"btn btn-primary", :onClick=>"sendmail(#{@members.to_s})" }
           %i{ :class=>"icon-envelope icon-white" }
           メール送信
 

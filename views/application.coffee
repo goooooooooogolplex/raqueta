@@ -20,13 +20,12 @@ sendmail = (members) ->
   mail += "body="
   mail += "出席: hoge%0d%0ahoge%0d%0ahogehoge"
   #for m, index in members
-  #  if document.getElementsByName("data0_#{index}")[0].checked
+  #  if document.getElementsById("radio#{index}_0").value == "1"
   #    mail += "#{m} "
-  alert(document.getElementById("dummy0_0").value)
 
   # exec
   #alert(mail)
-  #location.assign(mail)
+  location.assign(mail)
   #window.open(mail)
 
 # to call from HTML

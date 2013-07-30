@@ -1,4 +1,4 @@
-# sendmail function definition
+# function(): sendmail
 sendmail = (members) ->
   # default
   mail = "mailto:"
@@ -7,21 +7,22 @@ sendmail = (members) ->
 
   # address
   mail += "goooooooooogolplex@gmail.com"
-  mail += "&subject=[Raqueta] "
-  mail += document.getElementsByName("today")[0].value
 
   # subject
+  mail += "?subject=[Raqueta] "
+  mail += document.getElementsByName("today")[0].value
   mail += " ("
   mail += document.getElementsByName("court")[0].value
   mail += document.getElementsByName("numcourt")[0].value
   mail += ")&"
 
   # body
-  mail += "出席: "
+  mail += "body="
+  mail += "出席: hoge%0d%0ahoge%0d%0ahogehoge"
   #for m, index in members
   #  if document.getElementsByName("data0_#{index}")[0].checked
   #    mail += "#{m} "
-  alert(document.getElementsByName("data0_0")[0].attr("checked"))
+  alert(document.getElementById("dummy0_0").value)
 
   # exec
   #alert(mail)
@@ -30,8 +31,3 @@ sendmail = (members) ->
 
 # to call from HTML
 @sendmail = sendmail
-
-initialize = (x) ->
-  $('.button').attr checked: false
-
-@initialize = initialize

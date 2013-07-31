@@ -3,19 +3,18 @@
 %html{:lang => "ja"}
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
-    %meta{ :name=>"viewport", :content=>"width=device=width; initial-scale=1; maximum-scale=1; user-scalable=no;" }
+    %meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
     %title Raqueta
     %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap.min.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
     %script{ :src=>"http://code.jquery.com/jquery.js" }
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
     %script{ :src=>"/application.js" }
-    %script{ :src=>"radio.js" }
     - 0.upto(@members.size-1) do |i|
-      %script function radio#{i}_0_0() {$("#radio#{i}_0_0").on('click',function(){$("#radio#{i}_0").val("1")})}
-      %script function radio#{i}_0_1() {$("#radio#{i}_0_1").on('click',function(){$("#radio#{i}_0").val("0")})}
-      %script function radio#{i}_1_0() {$("#radio#{i}_1_0").on('click',function(){$("#radio#{i}_1").val("1")})}
-      %script function radio#{i}_1_1() {$("#radio#{i}_1_1").on('click',function(){$("#radio#{i}_1").val("0")})}
+      %script function radio#{i}_0_0() {$("#radio#{i}_0_0").on('click',function(){$("#radio#{i}_0").val("0")})}
+      %script function radio#{i}_0_1() {$("#radio#{i}_0_1").on('click',function(){$("#radio#{i}_0").val("1")})}
+      %script function radio#{i}_1_0() {$("#radio#{i}_1_0").on('click',function(){$("#radio#{i}_1").val("0")})}
+      %script function radio#{i}_1_1() {$("#radio#{i}_1_1").on('click',function(){$("#radio#{i}_1").val("1")})}
       %script function radio#{i}_2_0() {$("#radio#{i}_2_0").on('click',function(){$("#radio#{i}_2").val("0")})}
       %script function radio#{i}_2_1() {$("#radio#{i}_2_1").on('click',function(){$("#radio#{i}_2").val("1")})}
       %script function radio#{i}_2_2() {$("#radio#{i}_2_2").on('click',function(){$("#radio#{i}_2").val("2")})}
@@ -53,14 +52,14 @@
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 コート予約者
-        %select
+        %select{ :name=>"reserve" }
           %option 不明
           - 0.upto(@members.size-1) do |i|
             %option #{@members[i]}
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り
-        %select
+        %select{ :name=>"money" }
           - 0.upto(@members.size-1) do |i|
             %option #{@members[i]}
     %div{ :class=>"container-fluid" }
@@ -82,18 +81,18 @@
               %td #{@members[i]}
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_0", :value=>"0" }
-                %div{ :class=>"btn-group alignment", "data-toggle"=>"buttons-radio", :id=>"radio#{i}"}
+                %div{ :class=>"btn-group alignment", "data-toggle"=>"buttons-radio" }
                   %button{ :class=>"btn btn-info", :id=>"radio#{i}_0_1", :value=>"1" } 出
                   %button{ :class=>"btn btn-info active", :id=>"radio#{i}_0_0", :value=>"0" } 欠
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_1", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-warning", :id=>"radio#{i}_1_1", :value=>"1"} 有
-                  %button{ :class=>"btn btn-warning active", :id=>"radio#{i}_1_1", :value=>"0"} 無
+                  %button{ :class=>"btn btn-warning", :id=>"radio#{i}_1_1", :value=>"1" } 有
+                  %button{ :class=>"btn btn-warning active", :id=>"radio#{i}_1_0", :value=>"0"} 無
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_2", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-success active", :id=>"radio#{i}_2_0", :value=>"0"} 0
+                  %button{ :class=>"btn btn-success active", :id=>"radio#{i}_2_0", :value=>"0" } 0
                   %button{ :class=>"btn btn-success", :id=>"radio#{i}_2_1", :value=>"1"} 500
                   %button{ :class=>"btn btn-success", :id=>"radio#{i}_2_2", :value=>"2"} 1000
                   %button{ :class=>"btn btn-success", :id=>"radio#{i}_2_3", :value=>"3"} 入力

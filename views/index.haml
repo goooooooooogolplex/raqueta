@@ -20,6 +20,21 @@
       %script function radio#{i}_2_2() {$("#radio#{i}_2_2").on('click',function(){$("#radio#{i}_2").val("2")})}
       %script function radio#{i}_2_3() {$("#radio#{i}_2_3").on('click',function(){$("#radio#{i}_2").val("3")})}
     %script
+      function enable_court() {
+      $("#reserve1").attr("disabled", "disabled");
+      $("#reserve2").attr("disabled", "disabled");
+      $("#reserve3").attr("disabled", "disabled");
+      $("#reserve4").attr("disabled", "disabled");
+      var n = document.getElementById("numcourt").selectedIndex;
+      switch (n) {
+      case 4: $("#reserve4").removeAttr("disabled");
+      case 3: $("#reserve3").removeAttr("disabled");
+      case 2: $("#reserve2").removeAttr("disabled");
+      case 1: $("#reserve1").removeAttr("disabled");
+      }
+      }
+    %script function change_court() {$("#numcourt").on('change', enable_court)}
+    %script
       $(document).ready(function() {
       - 0.upto(@members.size-1) do |i|
         radio#{i}_0_0();
@@ -30,6 +45,8 @@
         radio#{i}_2_1();
         radio#{i}_2_2();
         radio#{i}_2_3();
+      change_court();
+      enable_court();
       })
   %body
     #main
@@ -46,16 +63,19 @@
         %select{ :name=>"court" }
           - @court.each do |c|
             %option #{c}
-        %select{ :name=>"numcourt" }
+        %select{ :name=>"numcourt", :id=>"numcourt" }
           - 1.upto(5) do |i|
             %option #{i}面
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 コート予約者
-        %select{ :name=>"reserve" }
-          %option 不明
-          - 0.upto(@members.size-1) do |i|
-            %option #{@members[i]}
+        - 0.upto(4) do |j|
+          %div
+            %span{ :class=>"add-on"} #{j+1}:
+            %select{ :id=>"reserve#{j}" }
+              %option 不明
+              - 0.upto(@members.size-1) do |i|
+                %option #{@members[i]}
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り

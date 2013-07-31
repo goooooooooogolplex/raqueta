@@ -20,10 +20,15 @@ sendmail = (members) ->
   # body
   mail += "body="
   mail += "■ コート予約%0d%0a"
-  mail += document.getElementsByName("reserve")[0].value
-  mail += "■ 現金受け取り%0d%0a"
+  c = document.getElementsByName("numcourt")[0].selectedIndex
+  mail += document.getElementById("reserve0").value
+  mail += (" " + document.getElementById("reserve1").value) if c >= 1
+  mail += (" " + document.getElementById("reserve2").value) if c >= 2
+  mail += (" " + document.getElementById("reserve3").value) if c >= 3
+  mail += (" " + document.getElementById("reserve4").value) if c >= 4
+  mail += "%0d%0a■ 現金受け取り%0d%0a"
   mail += document.getElementsByName("money")[0].value
-  mail += "■ 出席%0d%0a"
+  mail += "%0d%0a■ 出席%0d%0a"
   for m, index in members
     if document.getElementById("radio#{index}_0").value == "1"
       mail += "#{m} "

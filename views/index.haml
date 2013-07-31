@@ -50,14 +50,13 @@
       })
   %body
     #main
+    %div{ :class=>"hero-unit" }
+      %h1 Raqueta
+      %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
     %div{ :class=>"container-fluid" }
-      %div{ :class=>"hero-unit" }
-        %h1 Raqueta
-        %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 開催日
         %input{ :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
-    %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 開催場所
         %select{ :name=>"court" }

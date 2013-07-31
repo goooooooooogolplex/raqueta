@@ -3,7 +3,7 @@
 %html{:lang => "ja"}
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
-    %meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
+    %meta{ :name=>"viewport", :content=>"width=480, initial-scale=1" }
     %title Raqueta
     %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap.min.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
@@ -50,10 +50,10 @@
       })
   %body
     #main
-    %div{ :class=>"hero-unit" }
-      %h1 Raqueta
-      %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
     %div{ :class=>"container-fluid" }
+      %div{ :class=>"hero-unit" }
+        %h1 Raqueta
+        %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 開催日
         %input{ :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
@@ -123,7 +123,7 @@
           メール送信
 
     %div{ :id=>"footer" }
-      %div{ :class=>"container" }
+      %div{ :class=>"container-fluid" }
         %p{ :align=>"right" }
           Powerd by
           %a{ :href=>"http://www.ruby-lang.org/ja/" } Ruby

@@ -83,22 +83,20 @@ sendmail = (members) ->
 $(document).ready ->
   enable_court()
   $("#numcourt").on('change', enable_court)
-  $("#radio0_0").val("0")
-  $("#radio0_0").val("1")
   for i in [0..(js_members.length-1)]
     $("#radio#{i}_0_0").on 'click', ->
-      $("#radio#{i}_0").val("0")
+      $("#radio#{this.value}_0").val("0")
     $("#radio#{i}_0_1").on 'click', ->
-      $("#radio#{i}_0").val("1")
+      $("#radio#{this.value}_0").val("1")
     $("#radio#{i}_1_0").on 'click', ->
-      $("#radio#{i}_1").val("0")
+      $("#radio#{this.value}_1").val("0")
     $("#radio#{i}_1_1").on 'click', ->
-      $("#radio#{i}_1").val("1")
+      $("#radio#{this.value}_1").val("1")
     $("#radio#{i}_2_0").on 'click', ->
-      $("#radio#{i}_2").val("0")
+      $("#radio#{this.value}_2").val("0")
     $("#radio#{i}_2_1").on 'click', ->
-      $("#radio#{i}_2").val("1")
+      $("#radio#{this.value}_2").val("1")
     $("#radio#{i}_2_2").on 'click', ->
-      $("#radio#{i}_2").val("2")
+      $("#radio#{this.value}_2").val("2")
     $("#radio#{i}_2_3").on 'click', ->
-      $("#radio#{i}_2").val("3")
+      $("#radio#{this.value}_2").val("3")

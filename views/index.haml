@@ -34,7 +34,7 @@
         %h2 コート予約者
         - 0.upto(4) do |j|
           %div{ :id=>"reserve#{j}_div" }
-            %span{ :class=>"add-on"} #{j+1}:
+            %font{ :size=>"6" } #{j+1}:
             %select{ :id=>"reserve#{j}" }
               %option 不明
               - 0.upto(@members.size-1) do |i|
@@ -67,20 +67,20 @@
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_0", :value=>"0" }
                 %div{ :class=>"btn-group alignment", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-info btn-large", :id=>"radio#{i}_0_1", :value=>"#{i}" } 出
+                  %button{ :class=>"btn btn-large", :id=>"radio#{i}_0_1", :value=>"#{i}" } 出
                   %button{ :class=>"btn btn-info btn-large active", :id=>"radio#{i}_0_0", :value=>"#{i}" } 欠
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_1", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-warning btn-large", :id=>"radio#{i}_1_1", :value=>"#{i}" } 有
+                  %button{ :class=>"btn btn-large", :id=>"radio#{i}_1_1", :value=>"#{i}" } 有
                   %button{ :class=>"btn btn-warning btn-large active", :id=>"radio#{i}_1_0", :value=>"#{i}"} 無
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_2", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
                   %button{ :class=>"btn btn-success btn-large active", :id=>"radio#{i}_2_0", :value=>"#{i}" } 0
-                  %button{ :class=>"btn btn-success btn-large", :id=>"radio#{i}_2_1", :value=>"#{i}"} 500
-                  %button{ :class=>"btn btn-success btn-large", :id=>"radio#{i}_2_2", :value=>"#{i}"} 1000
-                  %button{ :class=>"btn btn-success btn-large", :id=>"radio#{i}_2_3", :value=>"#{i}"} 入力
+                  %button{ :class=>"btn btn-large", :id=>"radio#{i}_2_1", :value=>"#{i}"} 500
+                  %button{ :class=>"btn btn-large", :id=>"radio#{i}_2_2", :value=>"#{i}"} 1000
+                  %button{ :class=>"btn btn-large", :id=>"radio#{i}_2_3", :value=>"#{i}"} 入力
               %td{ :style=>"vertical-align:middle" }
                 %input{ :type=>"number", :value=>"", :style=>"width:70px;", :id=>"number#{i}", :placeholder=>"金額" }
       %div{ :style=>"padding-bottom:20px" }

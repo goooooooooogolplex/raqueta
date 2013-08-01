@@ -1093,11 +1093,14 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 20px;
+  /*height: 20px;*/
+  height: 36px;
   padding: 4px 6px;
   margin-bottom: 10px;
-  font-size: 15px;
-  line-height: 20px;
+  /*font-size: 15px;*/
+  font-size: 20px;
+  /*line-height: 20px;*/
+  line-height: 36px;
   color: #95a5a6;
   vertical-align: middle;
   -webkit-border-radius: 6px;
@@ -1198,7 +1201,9 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
+  /*width: 220px;*/
+  width: 150px;
+  height: 40px;
   background-color: #ffffff;
   border: 1px solid #dce4ec;
 }

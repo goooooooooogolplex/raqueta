@@ -1,3 +1,26 @@
+# function(): enable_court
+enable_court = () ->
+  $("#reserve1_div").attr("style", "display:none")
+  $("#reserve2_div").attr("style", "display:none")
+  $("#reserve3_div").attr("style", "display:none")
+  $("#reserve4_div").attr("style", "display:none")
+  n = document.getElementById("numcourt").selectedIndex
+  switch n
+    when 4
+      $("#reserve4_div").attr("style", "display")
+      $("#reserve3_div").attr("style", "display")
+      $("#reserve2_div").attr("style", "display")
+      $("#reserve1_div").attr("style", "display")
+    when 3
+      $("#reserve3_div").attr("style", "display")
+      $("#reserve2_div").attr("style", "display")
+      $("#reserve1_div").attr("style", "display")
+    when 2
+      $("#reserve2_div").attr("style", "display")
+      $("#reserve1_div").attr("style", "display")
+    when 1
+      $("#reserve1_div").attr("style", "display")
+
 # function(): sendmail
 sendmail = (members) ->
   # default
@@ -55,3 +78,27 @@ sendmail = (members) ->
 
 # to call from HTML
 @sendmail = sendmail
+
+# jQuery ready
+$(document).ready ->
+  enable_court()
+  $("#numcourt").on('change', enable_court)
+  $("#radio0_0").val("0")
+  $("#radio0_0").val("1")
+  for i in [0..(js_members.length-1)]
+    $("#radio#{i}_0_0").on 'click', ->
+      $("#radio#{i}_0").val("0")
+    $("#radio#{i}_0_1").on 'click', ->
+      $("#radio#{i}_0").val("1")
+    $("#radio#{i}_1_0").on 'click', ->
+      $("#radio#{i}_1").val("0")
+    $("#radio#{i}_1_1").on 'click', ->
+      $("#radio#{i}_1").val("1")
+    $("#radio#{i}_2_0").on 'click', ->
+      $("#radio#{i}_2").val("0")
+    $("#radio#{i}_2_1").on 'click', ->
+      $("#radio#{i}_2").val("1")
+    $("#radio#{i}_2_2").on 'click', ->
+      $("#radio#{i}_2").val("2")
+    $("#radio#{i}_2_3").on 'click', ->
+      $("#radio#{i}_2").val("3")

@@ -3,11 +3,12 @@
 %html{:lang => "ja"}
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
-    %meta{ :name=>"viewport", :content=>"width=600, initial-scale=1" }
+    %meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
     %title Raqueta
     %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap.min.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
     %script{ :src=>"http://code.jquery.com/jquery.js" }
+    %script{ :src=>"http://code.jquery.com/ui/1.10.3/jquery-ui.js" }
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
     %script{ :src=>"/application.js" }
     - 0.upto(@members.size-1) do |i|
@@ -50,10 +51,10 @@
       })
   %body
     #main
+    %div{ :class=>"hero-unit" }
+      %h1 Raqueta
+      %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
     %div{ :class=>"container-fluid" }
-      %div{ :class=>"hero-unit" }
-        %h1 Raqueta
-        %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
       %div{ :class=>"page-header" }
         %h2 開催日
         %input{ :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
@@ -123,21 +124,20 @@
           メール送信
 
     %div{ :id=>"footer" }
-      %div{ :class=>"container-fluid" }
-        %p{ :align=>"right" }
-          Powerd by
-          %a{ :href=>"http://www.ruby-lang.org/ja/" } Ruby
-          ,
-          %a{ :href=>"http://www.sinatrarb.com/" } Sinatra
-          ,
-          %a{ :href=>"http://haml.info/" } Haml
-          ,
-          %a{ :href=>"http://sass-lang.com/" } Sass
-          ,
-          %a{ :href=>"http://coffeescript.org/" } CoffeeScript
-          ,
-          %a{ :href=>"http://getbootstrap.com/" } Bootstrap
-          , etc...
-        %p{ :align=>"right" }
-          Created by
-          %strong Shin Ohno
+      %p{ :align=>"right" }
+        Powerd by
+        %a{ :href=>"http://www.ruby-lang.org/ja/" } Ruby
+        ,
+        %a{ :href=>"http://www.sinatrarb.com/" } Sinatra
+        ,
+        %a{ :href=>"http://haml.info/" } Haml
+        ,
+        %a{ :href=>"http://sass-lang.com/" } Sass
+        ,
+        %a{ :href=>"http://coffeescript.org/" } CoffeeScript
+        ,
+        %a{ :href=>"http://getbootstrap.com/" } Bootstrap
+        , etc...
+      %p{ :align=>"right" }
+        Created by
+        %strong Shin Ohno

@@ -5,7 +5,7 @@
     %meta{ :content=>"text/html", :charset=>"utf-8" }
     %meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
     %title Raqueta
-    %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap.min.css", :media=>"screen" }
+    %link{ :rel=>"stylesheet", :href=>"bootstrap2/css/bootstrap-flatly.css", :media=>"screen" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
     %script{ :src=>"http://code.jquery.com/jquery.js" }
     %script{ :src=>"http://code.jquery.com/ui/1.10.3/jquery-ui.js" }
@@ -117,7 +117,7 @@
                   %button{ :class=>"btn btn-success", :id=>"radio#{i}_2_2", :value=>"2"} 1000
                   %button{ :class=>"btn btn-success", :id=>"radio#{i}_2_3", :value=>"3"} 入力
               %td
-                %input{ :type=>"number", :value=>"0", :style=>"width:50px;", :id=>"number#{i}" }
+                %input{ :type=>"number", :value=>"", :style=>"width:50px;", :id=>"number#{i}", :placeholder=>"金額" }
       %div{ :style=>"padding-bottom:20px" }
         %button{ :class=>"btn btn-primary", :onClick=>"sendmail(#{@members.to_s})" }
           %i{ :class=>"icon-envelope icon-white" }

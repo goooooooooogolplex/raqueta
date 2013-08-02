@@ -11,6 +11,7 @@
     %script{ :src=>"http://code.jquery.com/ui/1.10.3/jquery-ui.js" }
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
     %script js_members = #{@members.to_s}
+    %script js_price = #{@price.to_s}
     %script{ :src=>"/application.js" }
   %body
     #main
@@ -22,8 +23,8 @@
         %h2 開催日
         %input{ :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}" }
       %div{ :class=>"page-header" }
-        %h2 開催場所
-        %select{ :name=>"court" }
+        %h2 開催場所・コート数
+        %select{ :name=>"court", :id=>"court" }
           - @court.each do |c|
             %option #{c}
         %select{ :name=>"numcourt", :id=>"numcourt" }
@@ -31,7 +32,7 @@
             %option #{i}面
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
-        %h2 コート予約者
+        %h2 コート予約者・利用時間
         - 0.upto(4) do |j|
           %div{ :id=>"reserve#{j}_div" }
             %font{ :size=>"6" } #{j+1}:
@@ -39,6 +40,10 @@
               %option 不明
               - 0.upto(@members.size-1) do |i|
                 %option #{@members[i]}
+            %select{ :id=>"time#{j}" }
+              - 1.upto(10) do |i|
+                %option #{i}時間
+            %input{ :type=>"number", :value=>"", :style=>"width:150px;", :id=>"price#{j}" }
     %div{ :class=>"container-fluid" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り

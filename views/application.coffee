@@ -10,6 +10,15 @@ enable_court = () ->
   $("#reserve3_div").attr("style", "display") if n >= 3
   $("#reserve4_div").attr("style", "display") if n >= 4
 
+# function(): calculate_price
+calculate_price = () ->
+  price = js_price[document.getElementsByName("court")[0].selectedIndex]
+  $("#price0").val((document.getElementById("time0").selectedIndex + 1) * price)
+  $("#price1").val((document.getElementById("time1").selectedIndex + 1) * price)
+  $("#price2").val((document.getElementById("time2").selectedIndex + 1) * price)
+  $("#price3").val((document.getElementById("time3").selectedIndex + 1) * price)
+  $("#price4").val((document.getElementById("time4").selectedIndex + 1) * price)
+
 # function(): sendmail
 sendmail = (members) ->
   # default
@@ -36,11 +45,16 @@ sendmail = (members) ->
   mail += "■ コート予約%0d%0a"
   c = document.getElementsByName("numcourt")[0].selectedIndex
   mail += document.getElementById("reserve0").value
+  mail += (" " + document.getElementById("price0").value + "%0d%0a")
   mail += (" " + document.getElementById("reserve1").value) if c >= 1
+  mail += (" " + document.getElementById("price1").value + "%0d%0a") if c >= 1
   mail += (" " + document.getElementById("reserve2").value) if c >= 2
+  mail += (" " + document.getElementById("price2").value + "%0d%0a") if c >= 2
   mail += (" " + document.getElementById("reserve3").value) if c >= 3
+  mail += (" " + document.getElementById("price3").value + "%0d%0a") if c >= 3
   mail += (" " + document.getElementById("reserve4").value) if c >= 4
-  mail += "%0d%0a■ 現金受け取り%0d%0a"
+  mail += (" " + document.getElementById("price4").value + "%0d%0a") if c >= 4
+  mail += "■ 現金受け取り%0d%0a"
   mail += document.getElementsByName("money")[0].value
   mail += "%0d%0a■ 出席%0d%0a"
   for m, index in members
@@ -74,6 +88,11 @@ sendmail = (members) ->
 $(document).ready ->
   enable_court()
   $("#numcourt").on('change', enable_court)
+  for i in [0..4]
+    $("#time#{i}").prop("selectedIndex", 2)
+    $("#time#{i}").on('change', calculate_price)
+  $("#court").on('change', calculate_price)
+  calculate_price()
   for i in [0..(js_members.length-1)]
     $("#radio#{i}_0_0").on 'click', ->
       $("#radio#{this.value}_0").val("0")

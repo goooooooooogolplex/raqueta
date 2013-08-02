@@ -5,21 +5,10 @@ enable_court = () ->
   $("#reserve3_div").attr("style", "display:none")
   $("#reserve4_div").attr("style", "display:none")
   n = document.getElementById("numcourt").selectedIndex
-  switch n
-    when 4
-      $("#reserve4_div").attr("style", "display")
-      $("#reserve3_div").attr("style", "display")
-      $("#reserve2_div").attr("style", "display")
-      $("#reserve1_div").attr("style", "display")
-    when 3
-      $("#reserve3_div").attr("style", "display")
-      $("#reserve2_div").attr("style", "display")
-      $("#reserve1_div").attr("style", "display")
-    when 2
-      $("#reserve2_div").attr("style", "display")
-      $("#reserve1_div").attr("style", "display")
-    when 1
-      $("#reserve1_div").attr("style", "display")
+  $("#reserve1_div").attr("style", "display") if n >= 1
+  $("#reserve2_div").attr("style", "display") if n >= 2
+  $("#reserve3_div").attr("style", "display") if n >= 3
+  $("#reserve4_div").attr("style", "display") if n >= 4
 
 # function(): sendmail
 sendmail = (members) ->

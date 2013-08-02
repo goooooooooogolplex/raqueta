@@ -19,7 +19,8 @@ sendmail = (members) ->
   other = false
 
   # address
-  mail += "goooooooooogolplex+raqueta@gmail.com"
+  mail += "goooooooooogolplex+raqueta"
+  mail += "@gmail.com"
 
   # subject
   mail += "?subject=[Raqueta] "

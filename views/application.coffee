@@ -13,7 +13,8 @@ enable_court = () ->
 # function(): sendmail
 sendmail = (members) ->
   # default
-  mail = "mailto:"
+  mail = "mai"
+  mail += "lto:"
   length = members.length
   attend = 0
   other = false

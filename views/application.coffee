@@ -59,14 +59,14 @@ sendmail = (members) ->
   mail += "%0d%0a■ 出席%0d%0a"
   for m, index in members
     if document.getElementById("radio#{index}_0").value == "1"
+      m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} "
       attend += 1
-      other = true if index == (length-1)
   mail += "(#{attend}名)"
-  mail += " ※その他は今のところまとめて1名扱い" if other == true
   mail += "%0d%0a■ 駐車場%0d%0a"
   for m, index in members
     if document.getElementById("radio#{index}_1").value == "1"
+      m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} "
   mail += "%0d%0a■ 支払い%0d%0a"
   for m, index in members
@@ -75,7 +75,12 @@ sendmail = (members) ->
     money += "1000" if document.getElementById("radio#{index}_2").value == "2"
     money += document.getElementById("number#{index}").value if document.getElementById("radio#{index}_2").value == "3"
     if document.getElementById("radio#{index}_2").value != "0"
+      m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} #{money}%0d%0a"
+  mail += "■ メモ%0d%0a"
+  mail += document.getElementById("memo").value
+  mail += "%0d%0a"
+  mail += "#{js_members.length} #{js_guests.length}"
 
   # exec
   #alert(mail)

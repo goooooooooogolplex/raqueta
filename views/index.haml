@@ -12,6 +12,7 @@
     %script{ :src=>"bootstrap2/js/bootstrap.min.js" }
     %script js_members = #{@members.to_s}
     %script js_price = #{@price.to_s}
+    %script js_guests = #{@guests.to_s}
     %script{ :src=>"/application.js" }
   %body
     #main
@@ -68,7 +69,10 @@
               %td{ :style=>"vertical-align:middle" }
                 %font{ :size=>"6" } #{i}
               %td{ :style=>"vertical-align:middle" }
-                %font{ :size=>"6" } #{@members[i]}
+                - if @members[i] != "ゲスト"
+                  %font{ :size=>"6" } #{@members[i]}
+                - else
+                  %input{ :type=>"text", :value=>"", :style=>"width:60px;", :id=>"guest#{i}", :placeholder=>"名前" }
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_0", :value=>"0" }
                 %div{ :class=>"btn-group alignment", "data-toggle"=>"buttons-radio" }
@@ -88,6 +92,10 @@
                   %button{ :class=>"btn btn-large", :id=>"radio#{i}_2_3", :value=>"#{i}"} 入力
               %td{ :style=>"vertical-align:middle" }
                 %input{ :type=>"number", :value=>"", :style=>"width:70px;", :id=>"number#{i}", :placeholder=>"金額" }
+    %div{ :class=>"container-fluid" }
+      %div{ :class=>"page-header" }
+        %h2 メモ
+        %input{ :type=>"text", :name=>"memo", :id=>"memo", :value=>"", :style=>"width:1000px;", :placeholder=>"その他何かあればここに" }
       %div{ :style=>"padding-bottom:20px" }
         %button{ :class=>"btn btn-primary btn-large", :onClick=>"sendmail(#{@members.to_s})" }
           %i{ :class=>"icon-envelope icon-white" }

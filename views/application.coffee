@@ -68,7 +68,7 @@ sendmail = (members) ->
     if document.getElementById("radio#{index}_1").value == "1"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} "
-  mail += "%0d%0a■ 支払い%0d%0a"
+  mail += "%0d%0a■ 支払い"
   for m, index in members
     money = ""
     money += "500" if document.getElementById("radio#{index}_2").value == "1"
@@ -76,7 +76,7 @@ sendmail = (members) ->
     money += document.getElementById("number#{index}").value if document.getElementById("radio#{index}_2").value == "3"
     if document.getElementById("radio#{index}_2").value != "0"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
-      mail += "#{m} #{money}%0d%0a"
+      mail += "%0d%0a#{m} #{money}"
   mail += "%0d%0a■ メモ%0d%0a"
   mail += document.getElementById("memo").value
 

@@ -46,13 +46,13 @@ sendmail = (members) ->
   c = document.getElementsByName("numcourt")[0].selectedIndex
   mail += document.getElementById("reserve0").value
   mail += (" " + document.getElementById("price0").value + "%0d%0a")
-  mail += (" " + document.getElementById("reserve1").value) if c >= 1
+  mail += (      document.getElementById("reserve1").value) if c >= 1
   mail += (" " + document.getElementById("price1").value + "%0d%0a") if c >= 1
-  mail += (" " + document.getElementById("reserve2").value) if c >= 2
+  mail += (      document.getElementById("reserve2").value) if c >= 2
   mail += (" " + document.getElementById("price2").value + "%0d%0a") if c >= 2
-  mail += (" " + document.getElementById("reserve3").value) if c >= 3
+  mail += (      document.getElementById("reserve3").value) if c >= 3
   mail += (" " + document.getElementById("price3").value + "%0d%0a") if c >= 3
-  mail += (" " + document.getElementById("reserve4").value) if c >= 4
+  mail += (      document.getElementById("reserve4").value) if c >= 4
   mail += (" " + document.getElementById("price4").value + "%0d%0a") if c >= 4
   mail += "■ 現金受け取り%0d%0a"
   mail += document.getElementsByName("money")[0].value

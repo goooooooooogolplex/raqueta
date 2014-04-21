@@ -77,10 +77,8 @@ sendmail = (members) ->
     if document.getElementById("radio#{index}_2").value != "0"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} #{money}%0d%0a"
-  mail += "■ メモ%0d%0a"
+  mail += "%0d%0a■ メモ%0d%0a"
   mail += document.getElementById("memo").value
-  mail += "%0d%0a"
-  mail += "#{js_members.length} #{js_guests.length}"
 
   # exec
   #alert(mail)

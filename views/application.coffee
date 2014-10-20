@@ -33,42 +33,42 @@ sendmail = (members) ->
   mail += "@gmail.com"
 
   # subject
-  mail += "?subject=[Raqueta] "
+  mail += "?subject=[Raqueta]%20"
   mail += document.getElementsByName("today")[0].value
-  mail += " ("
+  mail += "%20("
   mail += document.getElementsByName("court")[0].value
   mail += document.getElementsByName("numcourt")[0].value
   mail += ")&"
 
   # body
   mail += "body="
-  mail += "■ コート予約%0d%0a"
+  mail += "■%20コート予約%0d%0a"
   c = document.getElementsByName("numcourt")[0].selectedIndex
   mail += document.getElementById("reserve0").value
-  mail += (" " + document.getElementById("price0").value + "%0d%0a")
+  mail += ("%20" + document.getElementById("price0").value + "%0d%0a")
   mail += (      document.getElementById("reserve1").value) if c >= 1
-  mail += (" " + document.getElementById("price1").value + "%0d%0a") if c >= 1
+  mail += ("%20" + document.getElementById("price1").value + "%0d%0a") if c >= 1
   mail += (      document.getElementById("reserve2").value) if c >= 2
-  mail += (" " + document.getElementById("price2").value + "%0d%0a") if c >= 2
+  mail += ("%20" + document.getElementById("price2").value + "%0d%0a") if c >= 2
   mail += (      document.getElementById("reserve3").value) if c >= 3
-  mail += (" " + document.getElementById("price3").value + "%0d%0a") if c >= 3
+  mail += ("%20" + document.getElementById("price3").value + "%0d%0a") if c >= 3
   mail += (      document.getElementById("reserve4").value) if c >= 4
-  mail += (" " + document.getElementById("price4").value + "%0d%0a") if c >= 4
-  mail += "■ 現金受け取り%0d%0a"
+  mail += ("%20" + document.getElementById("price4").value + "%0d%0a") if c >= 4
+  mail += "■%20現金受け取り%0d%0a"
   mail += document.getElementsByName("money")[0].value
-  mail += "%0d%0a■ 出席%0d%0a"
+  mail += "%0d%0a■%20出席%0d%0a"
   for m, index in members
     if document.getElementById("radio#{index}_0").value == "1"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
-      mail += "#{m} "
+      mail += "#{m}%20"
       attend += 1
   mail += "(#{attend}名)"
-  mail += "%0d%0a■ 駐車場%0d%0a"
+  mail += "%0d%0a■%20駐車場%0d%0a"
   for m, index in members
     if document.getElementById("radio#{index}_1").value == "1"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
       mail += "#{m} "
-  mail += "%0d%0a■ 支払い"
+  mail += "%0d%0a■%20支払い"
   for m, index in members
     money = ""
     money += "500" if document.getElementById("radio#{index}_2").value == "1"
@@ -76,8 +76,8 @@ sendmail = (members) ->
     money += document.getElementById("number#{index}").value if document.getElementById("radio#{index}_2").value == "3"
     if document.getElementById("radio#{index}_2").value != "0"
       m = document.getElementById("guest#{index}").value if index >= (js_members.length - js_guests.length)
-      mail += "%0d%0a#{m} #{money}"
-  mail += "%0d%0a■ メモ%0d%0a"
+      mail += "%0d%0a#{m}%20#{money}"
+  mail += "%0d%0a■%20メモ%0d%0a"
   mail += document.getElementById("memo").value
 
   # exec

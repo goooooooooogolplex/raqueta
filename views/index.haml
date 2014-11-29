@@ -4,7 +4,7 @@
   %head
     %meta{ :content=>"text/html", :charset=>"utf-8" }
     %meta{ 'http-equiv'=>"X-UA-Compatible", :content=>"IE=edge" }
-    %meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
+    -#%meta{ :name=>"viewport", :content=>"width=device-width, initial-scale=1" }
     %title Raqueta
     %link{ :rel=>"stylesheet", :href=>"bootstrap3/css/bootstrap-flatly.min.css" }
     %link{ :rel=>"stylesheet", :href=>"/style.css" }
@@ -20,39 +20,39 @@
     %div{ :class=>"jumbotron" }
       %h1 Raqueta
       %p Raquetaの支払い管理をスマホで簡単に行えるように作りました。段々と改良していきます。
-    %div{ :class=>"container-fluid" }
+    %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 開催日
         %input{ :class=>"form-control", :type=>"date", :name=>"today", :value=>"#{Time.now.strftime("%Y-%m-%d")}", :style=>"width:200px;" }
       %div{ :class=>"form-inline form-group" }
         %h2 開催場所・コート数
-        %select{ :class=>"form-control", :name=>"court", :id=>"court", :style=>"width:200px;" }
+        %select{ :class=>"form-control", :name=>"court", :id=>"court", :style=>"width:100px;" }
           - @court.each do |c|
             %option #{c}
-        %select{ :class=>"form-control", :name=>"numcourt", :id=>"numcourt", :style=>"width:200px;" }
+        %select{ :class=>"form-control", :name=>"numcourt", :id=>"numcourt", :style=>"width:100px;" }
           - 1.upto(5) do |i|
             %option #{i}面
-    %div{ :class=>"container-fluid" }
+    %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 コート予約者・利用時間
         - 0.upto(4) do |j|
           %div{ :class=>"form-inline form-group", :id=>"reserve#{j}_div" }
             %font{ :size=>"6" } #{j+1}:
-            %select{ :class=>"form-control", :id=>"reserve#{j}", :style=>"width:200px;" }
+            %select{ :class=>"form-control", :id=>"reserve#{j}", :style=>"width:100px;" }
               %option 不明
               - 0.upto(@members.size-1) do |i|
                 %option #{@members[i]}
-            %select{ :class=>"form-control", :id=>"time#{j}", :style=>"width:200px;" }
+            %select{ :class=>"form-control", :id=>"time#{j}", :style=>"width:100px;" }
               - 1.upto(10) do |i|
                 %option #{i}時間
-            %input{ :class=>"form-control", :type=>"number", :value=>"", :style=>"width:200px;", :id=>"price#{j}" }
-    %div{ :class=>"container-fluid" }
+            %input{ :class=>"form-control", :type=>"number", :value=>"", :style=>"width:100px;", :id=>"price#{j}" }
+    %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 現金受け取り
-        %select{ :class=>"form-control", :name=>"money", :style=>"width:200px;" }
+        %select{ :class=>"form-control", :name=>"money", :style=>"width:100px;" }
           - 0.upto(@members.size-1) do |i|
             %option #{@members[i]}
-    %div{ :class=>"container-fluid" }
+    %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 出欠＆支払い管理
       %table{ :class=>"table table-striped" }
@@ -68,35 +68,35 @@
           - 0.upto(@members.size-1) do |i|
             %tr
               %td{ :style=>"vertical-align:middle" }
-                %font{ :size=>"6" } #{i}
+                %font{ :size=>"5" } #{i}
               %td{ :style=>"vertical-align:middle" }
                 - if @members[i] != "ゲスト"
-                  %font{ :size=>"6" } #{@members[i]}
+                  %font{ :size=>"5" } #{@members[i]}
                 - else
                   %input{ :class=>"form-control", :type=>"text", :value=>"", :style=>"width:70px;", :id=>"guest#{i}", :placeholder=>"名前" }
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_0", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-lg", :id=>"radio#{i}_0_1", :value=>"#{i}" } 出
-                  %button{ :class=>"btn btn-info btn-lg", :id=>"radio#{i}_0_0", :value=>"#{i}" } 欠
+                  %button{ :class=>"btn ", :id=>"radio#{i}_0_1", :value=>"#{i}" } 出
+                  %button{ :class=>"btn btn-info ", :id=>"radio#{i}_0_0", :value=>"#{i}" } 欠
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_1", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-lg", :id=>"radio#{i}_1_1", :value=>"#{i}" } 有
-                  %button{ :class=>"btn btn-warning btn-lg", :id=>"radio#{i}_1_0", :value=>"#{i}"} 無
+                  %button{ :class=>"btn ", :id=>"radio#{i}_1_1", :value=>"#{i}" } 有
+                  %button{ :class=>"btn btn-warning ", :id=>"radio#{i}_1_0", :value=>"#{i}"} 無
               %td
                 %input{ :type=>"hidden", :id=>"radio#{i}_2", :value=>"0" }
                 %div{ :class=>"btn-group", "data-toggle"=>"buttons-radio" }
-                  %button{ :class=>"btn btn-success btn-lg", :id=>"radio#{i}_2_0", :value=>"#{i}" } 0
-                  %button{ :class=>"btn btn-lg", :id=>"radio#{i}_2_1", :value=>"#{i}"} 500
-                  %button{ :class=>"btn btn-lg", :id=>"radio#{i}_2_2", :value=>"#{i}"} 1000
-                  %button{ :class=>"btn btn-lg", :id=>"radio#{i}_2_3", :value=>"#{i}"} 入力
+                  %button{ :class=>"btn btn-success ", :id=>"radio#{i}_2_0", :value=>"#{i}" } 0
+                  %button{ :class=>"btn ", :id=>"radio#{i}_2_1", :value=>"#{i}"} 500
+                  %button{ :class=>"btn ", :id=>"radio#{i}_2_2", :value=>"#{i}"} 1000
+                  %button{ :class=>"btn ", :id=>"radio#{i}_2_3", :value=>"#{i}"} 入力
               %td{ :style=>"vertical-align:middle" }
                 %input{ :class=>"form-control", :type=>"number", :value=>"", :style=>"width:80px;", :id=>"number#{i}", :placeholder=>"金額" }
-    %div{ :class=>"container-fluid" }
+    %div{ :class=>"container" }
       %div{ :class=>"page-header" }
         %h2 メモ
-        %input{ :class=>"form-control", :type=>"text", :name=>"memo", :id=>"memo", :value=>"", :style=>"width:1000px;", :placeholder=>"その他何かあればここに" }
+        %input{ :class=>"form-control", :type=>"text", :name=>"memo", :id=>"memo", :value=>"", :style=>"width:100%;", :placeholder=>"その他何かあればここに" }
       %div{ :style=>"padding-bottom:20px" }
         %button{ :class=>"btn btn-primary btn-large", :onClick=>"sendmail(#{@members.to_s})" }
           %i{ :class=>"icon-envelope icon-white" }

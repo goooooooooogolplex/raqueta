@@ -92,7 +92,7 @@ $(document).ready ->
   enable_court()
   $("#numcourt").on('change', enable_court)
   for i in [0..4]
-    $("#time#{i}").prop("selectedIndex", 2)
+    $("#time#{i}").prop("selectedIndex", 1)
     $("#time#{i}").on('change', calculate_price)
   $("#court").on('change', calculate_price)
   calculate_price()
